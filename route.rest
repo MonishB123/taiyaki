@@ -1,0 +1,27 @@
+GET http://localhost:3000/flashcards
+
+###
+
+GET http://localhost:3000/flashcards/68f2b85f34e4486f85557ecf
+
+###
+
+POST http://localhost:3000/flashcards
+Content-Type: application/json
+
+{
+    "front": "FRONT",
+    "back": "BACK"
+}
+
+###
+DELETE http://localhost:3000/flashcards/68f939bd0a464f536721dd7a
+
+###
+
+PATCH  http://localhost:3000/flashcards/68f2b86234e4486f85557ee1
+Content-Type: application/json
+
+{
+    "front": "Careless Whisper"
+}
