@@ -18,17 +18,35 @@ function SignupPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    
-    // TODO: Add actual signup logic here
-    console.log('Signup data:', formData);
-    alert('Signup functionality coming soon!');
+
+    try {
+      const response = await fetch('/users/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert(`✅ Signup successful! Welcome, ${data.username}.`);
+      } else {
+        alert(`❌ Signup failed: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      alert('Server error. Please try again later.');
+    }
   };
 
   return (

@@ -15,11 +15,26 @@ function LoginPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Add actual login logic here
-    console.log('Login data:', formData);
-    alert('Login functionality coming soon!');
+    
+    try {
+      const response = await fetch('/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert(`✅ Login successful! Welcome, ${data.username || 'user'}.`);
+      } else {
+        alert(`❌ Login failed: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Server error. Please try again later.');
+    }
   };
 
   return (
