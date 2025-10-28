@@ -1,9 +1,10 @@
 {
   "name": "testswe",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server/server.js",
+    "appStart": "cd client && npm start"
   },
   "author": "",
   "license": "ISC",
