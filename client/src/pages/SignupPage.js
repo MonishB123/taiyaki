@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './SignupPage.css';
-import './LoginPage.css'; 
 
 function SignupPage() {
   const [formData, setFormData] = useState({
@@ -10,19 +10,28 @@ function SignupPage() {
     password: '',
     confirmPassword: '',
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
     
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      setError('Passwords do not match!');
+      setLoading(false);
       return;
     }
 
@@ -38,14 +47,18 @@ function SignupPage() {
       });
 
       const data = await response.json();
+      
       if (response.ok) {
-        alert(`✅ Signup successful! Welcome, ${data.username}.`);
+        login(data); // Auto-login after signup
+        navigate('/dashboard');
       } else {
-        alert(`❌ Signup failed: ${data.message}`);
+        setError(data.message || 'Signup failed');
       }
     } catch (error) {
       console.error('Signup error:', error);
-      alert('Server error. Please try again later.');
+      setError('Server error. Please try again later.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,6 +66,8 @@ function SignupPage() {
     <div className="signup-container">
       <div className="signup-form-container">
         <h2 className="signup-title">Sign Up for Taiyaki</h2>
+        
+        {error && <div className="error-message">{error}</div>}
         
         <form onSubmit={handleSubmit} className="signup-form">
           <div className="input-group">
@@ -65,6 +80,7 @@ function SignupPage() {
               required
               className="input-field"
               placeholder="Choose a username"
+              disabled={loading}
             />
           </div>
 
@@ -78,6 +94,7 @@ function SignupPage() {
               required
               className="input-field"
               placeholder="Enter your email"
+              disabled={loading}
             />
           </div>
 
@@ -91,6 +108,7 @@ function SignupPage() {
               required
               className="input-field"
               placeholder="Create a password"
+              disabled={loading}
             />
           </div>
 
@@ -104,11 +122,16 @@ function SignupPage() {
               required
               className="input-field"
               placeholder="Confirm your password"
+              disabled={loading}
             />
           </div>
 
-          <button type="submit" className="signup-submit-button">
-            Sign Up
+          <button 
+            type="submit" 
+            className="signup-submit-button"
+            disabled={loading}
+          >
+            {loading ? 'Creating account...' : 'Sign Up'}
           </button>
         </form>
 

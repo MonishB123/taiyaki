@@ -1,0 +1,28 @@
+.flashcard-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-cards {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.empty-cards-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.empty-cards-title {
+  font-size: 20px;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.empty-cards-text {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}

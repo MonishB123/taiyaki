@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './LoginPage.css';
 
 function LoginPage() {
@@ -7,16 +8,24 @@ function LoginPage() {
     email: '',
     password: '',
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
     
     try {
       const response = await fetch('/users/login', {
@@ -26,14 +35,18 @@ function LoginPage() {
       });
 
       const data = await response.json();
+      
       if (response.ok) {
-        alert(`✅ Login successful! Welcome, ${data.username || 'user'}.`);
+        login(data); // Store user in context
+        navigate('/dashboard'); // Redirect to dashboard
       } else {
-        alert(`❌ Login failed: ${data.message}`);
+        setError(data.message || 'Login failed');
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert('Server error. Please try again later.');
+      setError('Server error. Please try again later.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,6 +54,8 @@ function LoginPage() {
     <div className="login-container">
       <div className="login-form-container">
         <h2 className="login-title">Log In to Taiyaki</h2>
+        
+        {error && <div className="error-message">{error}</div>}
         
         <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
@@ -53,6 +68,7 @@ function LoginPage() {
               required
               className="input-field"
               placeholder="Enter your email"
+              disabled={loading}
             />
           </div>
 
@@ -66,11 +82,16 @@ function LoginPage() {
               required
               className="input-field"
               placeholder="Enter your password"
+              disabled={loading}
             />
           </div>
 
-          <button type="submit" className="login-submit-button">
-            Log In
+          <button 
+            type="submit" 
+            className="login-submit-button"
+            disabled={loading}
+          >
+            {loading ? 'Logging in...' : 'Log In'}
           </button>
         </form>
 
