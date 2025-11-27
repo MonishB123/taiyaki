@@ -1,45 +1,69 @@
 .dashboard {
   min-height: 100vh;
-  background-color: #f0f2f5;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
 .dashboard-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 35px 25px;
 }
 
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .dashboard-title {
-  font-size: 32px;
-  color: #333;
-  margin: 0;
+  font-family: var(--font-title);
+  font-size: 3rem;
+  color: var(--text-primary);
+  letter-spacing: 2px;
 }
 
 .create-deck-button {
-  background-color: #28a745;
-  color: white;
+  background: linear-gradient(135deg, var(--accent-mint) 0%, var(--accent-mint-dark) 100%);
+  color: var(--text-white);
   border: none;
-  padding: 12px 24px;
-  border-radius: 5px;
+  padding: 14px 28px;
+  border-radius: var(--radius-round);
   font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-body);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(152, 212, 187, 0.4);
 }
 
 .create-deck-button:hover {
-  background-color: #218838;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(152, 212, 187, 0.5);
+  background: linear-gradient(135deg, #7BC4A8 0%, #5DAE8B 100%);
+}
+
+.create-deck-button:active {
+  transform: translateY(-1px);
 }
 
 .loading {
   text-align: center;
-  padding: 40px;
-  color: #666;
+  padding: 60px;
+  color: var(--text-secondary);
   font-size: 18px;
+  font-family: var(--font-body);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .dashboard-title {
+    font-size: 2.5rem;
+  }
 }

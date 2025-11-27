@@ -24,6 +24,44 @@ function SignupPage() {
     setError('');
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError('');
+    
+  //   if (formData.password !== formData.confirmPassword) {
+  //     setError('Passwords do not match!');
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch('/users/signup', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         username: formData.username,
+  //         email: formData.email,
+  //         password: formData.password
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+      
+  //     if (response.ok) {
+  //       login(data);
+  //       navigate('/dashboard');
+  //     } else {
+  //       setError(data.message || 'Signup failed');
+  //     }
+  //   } catch (error) {
+  //     console.error('Signup error:', error);
+  //     setError('Server error. Please try again later.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -35,37 +73,26 @@ function SignupPage() {
       return;
     }
 
-    try {
-      const response = await fetch('/users/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password
-        }),
+    // MOCK MODE - Skip backend
+    setTimeout(() => {
+      login({ 
+        username: formData.username, 
+        email: formData.email 
       });
-
-      const data = await response.json();
-      
-      if (response.ok) {
-        login(data); // Auto-login after signup
-        navigate('/dashboard');
-      } else {
-        setError(data.message || 'Signup failed');
-      }
-    } catch (error) {
-      console.error('Signup error:', error);
-      setError('Server error. Please try again later.');
-    } finally {
+      navigate('/dashboard');
       setLoading(false);
-    }
+    }, 500);
   };
 
   return (
     <div className="signup-container">
       <div className="signup-form-container">
-        <h2 className="signup-title">Sign Up for Taiyaki</h2>
+        <div className="form-logo-container">
+          <img src="/taiyaki.png" alt="Taiyaki" className="form-logo" />
+        </div>
+        
+        <h2 className="signup-title">Join Taiyaki!</h2>
+        <p className="signup-subtitle">Create an account to start learning</p>
         
         {error && <div className="error-message">{error}</div>}
         

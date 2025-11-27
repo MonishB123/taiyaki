@@ -6,8 +6,9 @@ function HomePage() {
   return (
     <div className="home-container">
       <div className="home-content">
-        <h1 className="home-title">Welcome to Taiyaki</h1>
-        <p className="home-subtitle">Your flashcard learning companion</p>
+        <img src="/taiyaki.png" alt="Taiyaki" className="home-logo" />
+        <h1 className="home-title">Taiyaki</h1>
+        <p className="home-subtitle">Your adorable flashcard companion</p>
         
         <div className="button-container">
           <Link to="/login" className="login-button">

@@ -6,14 +6,14 @@ function StudyProgress({ current, total }) {
 
   return (
     <div className="study-progress">
-      <div className="progress-text">
-        Card {current} of {total}
-      </div>
-      <div className="progress-bar">
+      <p className="progress-text">
+        Card <span className="progress-current">{current}</span> of <span className="progress-total">{total}</span>
+      </p>
+      <div className="progress-bar-container">
         <div 
-          className="progress-fill"
+          className="progress-bar-fill" 
           style={{ width: `${percentage}%` }}
-        ></div>
+        />
       </div>
     </div>
   );

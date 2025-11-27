@@ -4,64 +4,56 @@ import './QuizQuestion.css';
 function QuizQuestion({ 
   question, 
   options, 
-  correctAnswer, 
   selectedAnswer, 
-  showResult, 
-  onSelectAnswer 
+  correctAnswer,
+  isAnswered,
+  onSelectAnswer,
+  onCheckAnswer,
+  onNext 
 }) {
-  const getOptionClass = (option) => {
-    if (!showResult) {
-      return selectedAnswer === option ? 'selected' : '';
+  const letters = ['A', 'B', 'C', 'D'];
+
+  const getOptionClass = (option, index) => {
+    if (!isAnswered) {
+      return selectedAnswer === index ? 'selected' : '';
     }
-    
     if (option === correctAnswer) {
       return 'correct';
     }
-    
-    if (option === selectedAnswer && option !== correctAnswer) {
+    if (selectedAnswer === index && option !== correctAnswer) {
       return 'incorrect';
     }
-    
-    return 'disabled';
+    return '';
   };
 
   return (
     <div className="quiz-question">
-      <div className="question-card">
-        <span className="question-label">QUESTION</span>
-        <p className="question-text">{question}</p>
-      </div>
-
+      <p className="question-text">{question}</p>
+      
       <div className="options-list">
         {options.map((option, index) => (
           <button
             key={index}
-            className={`option-button ${getOptionClass(option)}`}
-            onClick={() => onSelectAnswer(option)}
-            disabled={showResult}
+            className={`option-button ${getOptionClass(option, index)}`}
+            onClick={() => !isAnswered && onSelectAnswer(index)}
+            disabled={isAnswered}
           >
-            <span className="option-letter">
-              {String.fromCharCode(65 + index)}
-            </span>
-            <span className="option-text">{option}</span>
-            {showResult && option === correctAnswer && (
-              <span className="option-icon">✓</span>
-            )}
-            {showResult && option === selectedAnswer && option !== correctAnswer && (
-              <span className="option-icon">✗</span>
-            )}
+            <span className="option-letter">{letters[index]}</span>
+            {option}
           </button>
         ))}
       </div>
 
-      {showResult && (
-        <div className={`result-message ${selectedAnswer === correctAnswer ? 'correct' : 'incorrect'}`}>
-          {selectedAnswer === correctAnswer ? (
-            <span>🎉 Correct!</span>
-          ) : (
-            <span>❌ Incorrect. The answer was: {correctAnswer}</span>
-          )}
-        </div>
+      {!isAnswered && selectedAnswer !== null && (
+        <button className="check-button" onClick={onCheckAnswer}>
+          Check Answer
+        </button>
+      )}
+
+      {isAnswered && (
+        <button className="next-button" onClick={onNext}>
+          Next Question
+        </button>
       )}
     </div>
   );

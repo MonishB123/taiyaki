@@ -16,12 +16,13 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/dashboard" className="navbar-logo">
-          🐟 Taiyaki
+          <img src="/taiyaki.png" alt="Taiyaki" className="navbar-logo-img" />
+          <span className="navbar-logo-text">Taiyaki</span>
         </Link>
 
         <div className="navbar-right">
           <span className="navbar-username">
-            Hello, {user?.username || 'User'}
+            Hey, {user?.username || 'User'}! ✨
           </span>
           <button onClick={handleLogout} className="logout-button">
             Log Out

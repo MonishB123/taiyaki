@@ -1,28 +1,45 @@
 .flashcard-list {
   display: flex;
   flex-direction: column;
+  gap: 18px;
+  margin-top: 18px;
 }
 
-.empty-cards {
+.empty-flashcards {
   text-align: center;
-  padding: 40px 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  padding: 50px 30px;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  border: 3px dashed var(--taiyaki-light);
 }
 
-.empty-cards-icon {
-  font-size: 48px;
+.empty-flashcards-icon {
+  font-size: 56px;
   margin-bottom: 15px;
+  animation: bounce 2s ease-in-out infinite;
 }
 
-.empty-cards-title {
-  font-size: 20px;
-  color: #333;
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.empty-flashcards-title {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--text-primary);
   margin: 0 0 10px 0;
+  letter-spacing: 1px;
 }
 
-.empty-cards-text {
-  font-size: 14px;
-  color: #666;
+.empty-flashcards-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-secondary);
   margin: 0;
 }

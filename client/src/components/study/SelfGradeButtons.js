@@ -3,22 +3,20 @@ import './SelfGradeButtons.css';
 
 function SelfGradeButtons({ onGrade }) {
   return (
-    <div className="self-grade-buttons">
+    <div className="self-grade-container">
       <p className="grade-prompt">How well did you know this?</p>
-      <div className="grade-options">
+      <div className="grade-buttons">
         <button 
-          className="grade-button incorrect"
+          className="grade-button wrong"
           onClick={() => onGrade(false)}
         >
-          <span className="grade-icon">✗</span>
-          <span className="grade-text">Didn't Know</span>
+          Didn't Know
         </button>
         <button 
           className="grade-button correct"
           onClick={() => onGrade(true)}
         >
-          <span className="grade-icon">✓</span>
-          <span className="grade-text">Got It!</span>
+          Got It!
         </button>
       </div>
     </div>
