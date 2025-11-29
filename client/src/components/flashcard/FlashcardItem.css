@@ -1,0 +1,141 @@
+.flashcard-item {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-medium);
+  padding: 20px 25px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.flashcard-item:hover {
+  transform: translateX(5px);
+  border-color: var(--taiyaki-light);
+  box-shadow: var(--shadow-medium);
+}
+
+.flashcard-content {
+  flex: 1;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.flashcard-front,
+.flashcard-back {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.flashcard-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.flashcard-front .flashcard-label {
+  color: var(--taiyaki-golden);
+}
+
+.flashcard-back .flashcard-label {
+  color: var(--accent-pink);
+}
+
+.flashcard-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.click-to-reveal {
+  color: var(--text-light);
+  font-style: italic;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.click-to-reveal:hover {
+  color: var(--accent-pink);
+}
+
+.flashcard-divider {
+  width: 2px;
+  align-self: stretch;
+  background: linear-gradient(180deg, var(--taiyaki-light) 0%, var(--accent-pink) 100%);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.flashcard-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.flashcard-action-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+
+.flashcard-edit-button {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.flashcard-edit-button:hover {
+  background-color: var(--taiyaki-light);
+  color: var(--text-white);
+  transform: translateY(-2px);
+}
+
+.flashcard-delete-button {
+  background-color: var(--error-bg);
+  color: var(--error);
+}
+
+.flashcard-delete-button:hover {
+  background-color: var(--error);
+  color: var(--text-white);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .flashcard-item {
+    flex-direction: column;
+    padding: 18px 20px;
+  }
+
+  .flashcard-content {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .flashcard-divider {
+    width: 100%;
+    height: 2px;
+    align-self: auto;
+  }
+
+  .flashcard-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

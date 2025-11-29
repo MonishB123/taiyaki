@@ -1,0 +1,195 @@
+.deck-detail {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.deck-detail-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 35px 25px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 25px;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  color: var(--taiyaki-golden);
+  transform: translateX(-4px);
+}
+
+.deck-header {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-large);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-soft);
+  border: 2px solid var(--taiyaki-light);
+}
+
+.deck-title {
+  font-family: var(--font-title);
+  font-size: 2.8rem;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
+  letter-spacing: 2px;
+}
+
+.deck-description {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin: 0 0 25px 0;
+  line-height: 1.6;
+}
+
+/* Cards badge and buttons on same row */
+.deck-info-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-round);
+  display: inline-block;
+}
+
+.stat-badge.cards {
+  background-color: var(--taiyaki-cream);
+  color: var(--taiyaki-crust);
+}
+
+.study-button,
+.quiz-button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--radius-round);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.study-button {
+  background: linear-gradient(135deg, var(--taiyaki-golden) 0%, var(--taiyaki-crust) 100%);
+  color: var(--text-white);
+  box-shadow: 0 4px 15px rgba(232, 152, 94, 0.35);
+}
+
+.study-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(232, 152, 94, 0.45);
+}
+
+.quiz-button {
+  background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-pink-dark) 100%);
+  color: var(--text-white);
+  box-shadow: 0 4px 15px rgba(255, 155, 181, 0.35);
+}
+
+.quiz-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 155, 181, 0.45);
+}
+
+.study-button:disabled,
+.quiz-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.flashcards-section {
+  margin-top: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.add-card-button {
+  background: linear-gradient(135deg, var(--accent-mint) 0%, #5DAE8B 100%);
+  color: var(--text-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-round);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(152, 212, 187, 0.4);
+}
+
+.add-card-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(152, 212, 187, 0.5);
+  background: linear-gradient(135deg, #7BC4A8 0%, #5DAE8B 100%);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  font-family: var(--font-body);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .deck-header {
+    padding: 25px 20px;
+  }
+
+  .deck-title {
+    font-size: 2.2rem;
+  }
+
+  .deck-info-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat-badge,
+  .study-button,
+  .quiz-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}

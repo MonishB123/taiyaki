@@ -1,0 +1,71 @@
+.self-grade-container {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.grade-prompt {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.grade-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.grade-button {
+  padding: 16px 36px;
+  border: none;
+  border-radius: var(--radius-round);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.grade-button.wrong {
+  background-color: var(--error-bg);
+  color: var(--error);
+  border: 2px solid var(--error);
+}
+
+.grade-button.wrong:hover {
+  background-color: var(--error);
+  color: var(--text-white);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(229, 115, 115, 0.4);
+}
+
+.grade-button.correct {
+  background-color: var(--success-bg);
+  color: var(--success);
+  border: 2px solid var(--success);
+}
+
+.grade-button.correct:hover {
+  background-color: var(--success);
+  color: var(--text-white);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(129, 201, 149, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .grade-buttons {
+    flex-direction: column;
+  }
+
+  .grade-button {
+    width: 100%;
+  }
+}

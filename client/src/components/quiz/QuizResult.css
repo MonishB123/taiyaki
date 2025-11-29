@@ -1,0 +1,228 @@
+.quiz-result {
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-large);
+  padding: 50px 40px;
+  box-shadow: var(--shadow-medium);
+  border: 3px solid var(--taiyaki-light);
+  margin: 0 auto;
+}
+
+.result-title {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  color: var(--accent-pink);
+  margin: 0 0 30px 0;
+  letter-spacing: 2px;
+}
+
+/* Score bar */
+.score-bar-container {
+  width: 100%;
+  height: 40px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-round);
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.score-bar-correct {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success) 0%, #6BBF8A 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  transition: width 0.5s ease;
+}
+
+.score-bar-incorrect {
+  height: 100%;
+  background: linear-gradient(90deg, #E57373 0%, var(--error) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  transition: width 0.5s ease;
+}
+
+.score-summary {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.score-percentage {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 35px;
+}
+
+/* Questions to review */
+.review-section {
+  text-align: left;
+  margin-bottom: 35px;
+}
+
+.review-title {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-item {
+  background-color: var(--bg-white);
+  border: 2px solid var(--error-bg);
+  border-left: 4px solid var(--error);
+  border-radius: var(--radius-medium);
+  padding: 15px 20px;
+}
+
+.review-question {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.review-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.review-your-answer {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--error);
+}
+
+.review-correct-answer {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--success);
+}
+
+.review-your-answer span,
+.review-correct-answer span {
+  font-weight: 600;
+}
+
+/* No review needed message */
+.no-review {
+  text-align: center;
+  padding: 20px;
+  color: var(--success);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+.no-review-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.result-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.result-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+}
+
+.result-actions button {
+  padding: 14px 20px;
+  border-radius: var(--radius-round);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  border: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 52px;
+  line-height: 1;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-pink-dark) 100%);
+  color: var(--text-white);
+  box-shadow: 0 4px 15px rgba(255, 155, 181, 0.35);
+}
+
+.retry-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 155, 181, 0.45);
+}
+
+.back-button {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.back-button:hover {
+  /* ghost pink hover to match study back-button behavior but with pink hue */
+  background-color: rgba(255, 155, 181, 0.12);
+  color: var(--text-black);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 155, 181, 0.45);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .quiz-result {
+    padding: 40px 25px;
+  }
+
+  .result-title {
+    font-size: 2.5rem;
+  }
+
+  .score-bar-container {
+    height: 35px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .result-actions button {
+    width: 100%;
+  }
+}

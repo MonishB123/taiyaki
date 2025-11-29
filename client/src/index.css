@@ -1,13 +1,196 @@
-body {
+/* ===== CSS VARIABLES (Taiyaki Theme) ===== */
+:root {
+  /* Background Colors */
+  --bg-primary: #FFF0F5;
+  --bg-secondary: #FFE4EC;
+  --bg-card: #FFFBF7;
+  --bg-white: #FFFFFF;
+
+  /* Taiyaki Colors */
+  --taiyaki-golden: #E8985E;
+  --taiyaki-crust: #D4845A;
+  --taiyaki-light: #F5C396;
+  --taiyaki-cream: #FFF8E7;
+
+  /* Accent Colors */
+  --accent-pink: #FF9BB5;
+  --accent-pink-dark: #E8879D;
+  --accent-mint: #98D4BB;
+  --accent-mint-dark: #7BC4A6;
+  --accent-coral: #FF8A80;
+  --accent-lavender: #C5A3D9;
+
+  /* Text Colors */
+  --text-primary: #5D4037;
+  --text-secondary: #8D6E63;
+  --text-light: #A1887F;
+  --text-white: #FFFFFF;
+
+  /* Status Colors */
+  --success: #81C995;
+  --success-bg: #E8F5E9;
+  --error: #E57373;
+  --error-bg: #FFEBEE;
+  --warning: #FFD54F;
+  --warning-bg: #FFF8E1;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 15px rgba(232, 152, 94, 0.15);
+  --shadow-medium: 0 6px 20px rgba(232, 152, 94, 0.2);
+  --shadow-hover: 0 8px 25px rgba(232, 152, 94, 0.25);
+
+  /* Border Radius */
+  --radius-small: 8px;
+  --radius-medium: 15px;
+  --radius-large: 20px;
+  --radius-round: 50px;
+
+  /* Fonts */
+  --font-title: 'Cute Font', cursive;
+  --font-body: 'Grandstander', cursive;
+}
+
+/* ===== GLOBAL RESET ===== */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BASE STYLES ===== */
+body {
+  font-family: var(--font-body);
+  font-weight: 500;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--taiyaki-golden);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--taiyaki-crust);
+}
+
+/* ===== BUTTONS (Global Base) ===== */
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-medium);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== INPUTS ===== */
+input, textarea {
+  font-family: var(--font-body);
+  font-size: 16px;
+  border: 2px solid var(--taiyaki-light);
+  border-radius: var(--radius-small);
+  padding: 12px 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--taiyaki-golden);
+  box-shadow: 0 0 0 3px rgba(232, 152, 94, 0.2);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-light);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--taiyaki-light);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--taiyaki-golden);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background-color: var(--accent-pink);
+  color: var(--text-white);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  font-family: var(--font-body);
+}
+
+.loading::after {
+  content: '';
+  animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
 }
