@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/users/:path*",
+      "destination": "https://taiyaki.onrender.com/users/:path*"
+    },
+    {
+      "source": "/flashcards/:path*",
+      "destination": "https://taiyaki.onrender.com/flashcards/:path*"
+    }
+  ]
+}
