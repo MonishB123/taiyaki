@@ -5,27 +5,6 @@ import DeckGrid from '../components/deck/DeckGrid';
 import DeckForm from '../components/deck/DeckForm';
 import './DashboardPage.css';
 
-const MOCK_DECKS = [
-  {
-    _id: '1',
-    title: 'Biology Chapter 5',
-    description: 'Cell structure and functions',
-    cardCount: 25,
-  },
-  {
-    _id: '2',
-    title: 'Spanish Vocabulary',
-    description: 'Common phrases and words',
-    cardCount: 50,
-  },
-  {
-    _id: '3',
-    title: 'JavaScript Basics',
-    description: 'Variables, functions, and loops',
-    cardCount: 30,
-  },
-];
-
 function DashboardPage() {
   const { user } = useAuth();
   const [decks, setDecks] = useState([]);
@@ -33,30 +12,22 @@ function DashboardPage() {
   const [showDeckForm, setShowDeckForm] = useState(false);
   const [editingDeck, setEditingDeck] = useState(null);
 
-  // Fetch user's decks
   useEffect(() => {
     fetchDecks();
   }, []);
 
-  // const fetchDecks = async () => {
-  //   try {
-  //     const response = await fetch(`/flashcards/decks?userId=${user.email}`);
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setDecks(data);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching decks:', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const fetchDecks = async () => {
-    setTimeout(() => {
-      setDecks(MOCK_DECKS);
+    try {
+      const response = await fetch(`/flashcards/decks?userId=${user.email}`);
+      if (response.ok) {
+        const data = await response.json();
+        setDecks(data);
+      }
+    } catch (error) {
+      console.error('Error fetching decks:', error);
+    } finally {
       setLoading(false);
-    }, 500);
+    }
   };
 
 

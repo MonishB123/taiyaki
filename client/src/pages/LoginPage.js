@@ -22,48 +22,32 @@ function LoginPage() {
     setError('');
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setError('');
-    
-  //   try {
-  //     const response = await fetch('/users/login', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     const data = await response.json();
-      
-  //     if (response.ok) {
-  //       login(data);
-  //       navigate('/dashboard');
-  //     } else {
-  //       setError(data.message || 'Login failed');
-  //     }
-  //   } catch (error) {
-  //     console.error('Login error:', error);
-  //     setError('Server error. Please try again later.');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     
-    // MOCK MODE - Skip backend
-    setTimeout(() => {
-      login({ 
-        username: 'TestUser', 
-        email: formData.email 
+    try {
+      const response = await fetch('/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      navigate('/dashboard');
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        login(data);
+        navigate('/dashboard');
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Server error. Please try again later.');
+    } finally {
       setLoading(false);
-    }, 500);
+    }
   };
 
   return (
