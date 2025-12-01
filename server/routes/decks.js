@@ -23,33 +23,6 @@ const deckSchema = new mongoose.Schema({
 
 const Deck = mongoose.model('Deck', deckSchema)
 
-router.get('/', async (req, res) => {
-  try {
-    const userId = req.query.userId
-    if (!userId) {
-      return res.status(400).json({ message: 'userId is required' })
-    }
-    const decks = await Deck.find({ userId })
-    res.json(decks)
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})
-
-router.post('/', async (req, res) => {
-  try {
-    const deck = new Deck({
-      title: req.body.title,
-      description: req.body.description || '',
-      userId: req.body.userId
-    })
-    const newDeck = await deck.save()
-    res.status(201).json(newDeck)
-  } catch (err) {
-    res.status(400).json({ message: err.message })
-  }
-})
-
 const flashcardSchema = new mongoose.Schema({
   front: {
     type: String,
@@ -70,6 +43,46 @@ const flashcardSchema = new mongoose.Schema({
 })
 
 const Flashcard = mongoose.models.Flashcard || mongoose.model('Flashcard', flashcardSchema)
+
+router.get('/', async (req, res) => {
+  try {
+    const userId = req.query.userId
+    if (!userId) {
+      return res.status(400).json({ message: 'userId is required' })
+    }
+    const decks = await Deck.find({ userId })
+    
+    // Add card count for each deck
+    const decksWithCount = await Promise.all(
+      decks.map(async (deck) => {
+        const cardCount = await Flashcard.countDocuments({ deckId: deck._id.toString() })
+        return {
+          ...deck.toObject(),
+          cardCount
+        }
+      })
+    )
+    
+    res.json(decksWithCount)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+router.post('/', async (req, res) => {
+  try {
+    const deck = new Deck({
+      title: req.body.title,
+      description: req.body.description || '',
+      userId: req.body.userId
+    })
+    const newDeck = await deck.save()
+    // Return with cardCount: 0 for new decks
+    res.status(201).json({ ...newDeck.toObject(), cardCount: 0 })
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+})
 
 router.get('/:deckId/cards', async (req, res) => {
   try {
@@ -121,7 +134,8 @@ router.put('/:id', async (req, res) => {
     }
     
     const updatedDeck = await deck.save()
-    res.json(updatedDeck)
+    const cardCount = await Flashcard.countDocuments({ deckId: deck._id.toString() })
+    res.json({ ...updatedDeck.toObject(), cardCount })
   } catch (err) {
     res.status(400).json({ message: err.message })
   }
@@ -141,4 +155,3 @@ router.delete('/:id', async (req, res) => {
 })
 
 module.exports = router
-
